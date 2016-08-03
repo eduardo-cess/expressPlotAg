@@ -1,0 +1,141 @@
+extends layout
+
+block content
+	h3.center= title
+	h5.center.black-text Gráfico da Média de Indivíduos por Geração
+	
+	canvas#grafico
+
+	script(type="text/javascript" src="./javascripts/Chart.min.js")
+	script(type="text/javascript" src="./javascripts/underscore.js")
+	script(type="text/javascript").
+		{
+			//var u = require('underscore');
+
+			var experimentos = !{experimentos};
+			var tipo_ag = !{tipo_ag};
+			console.log(tipo_ag);
+			//console.log(experimentos[4]['melhor_por_geracao']);
+			var qtd_geracoes = experimentos[0]['melhor_por_geracao'].length;
+			var media_melhores = [], media_piores = [], media_media = [];
+			var sum_melhores = 0, sum_piores = 0, sum_media = 0;
+			
+			for(i in _.range(qtd_geracoes)){
+				for(j in experimentos){
+					sum_melhores+=experimentos[j]['melhor_por_geracao'][i];
+					sum_piores+=experimentos[j]['pior_por_geracao'][i];
+					sum_media+=experimentos[j]['media_por_geracao'][i];
+				}
+				media_melhores.push(sum_melhores/experimentos.length);
+				media_piores.push(sum_piores/experimentos.length);
+				media_media.push(sum_media/experimentos.length);
+				sum_melhores = 0, sum_piores = 0, sum_media = 0;
+			}
+			
+			$(document).ready(function(){
+			  var ctxLine = document.getElementById("grafico").getContext("2d");
+
+			  window.myBar = new Chart(ctxLine,{
+				  type: 'line',
+				  data: {
+					  labels: _.range(qtd_geracoes),
+						datasets: [
+							{
+							  label: "Melhores",
+							  fill: false,
+							  lineTension: 0.1,
+							  backgroundColor: "#27C700",
+							  borderColor: "#27C700",
+							  borderCapStyle: 'butt',
+							  borderDash: [],
+							  borderDashOffset: 0.0,
+							  borderJoinStyle: 'miter',
+							  pointBorderColor: "#90EE7A",
+							  pointBackgroundColor: "rgba(0,0,0,1)",
+							  pointBorderWidth: 3,
+							  pointHoverRadius: 5,
+							  pointHoverBackgroundColor: "#CCE325",
+							  pointHoverBorderColor: "rgba(220,220,220,1)",
+							  pointHoverBorderWidth: 2,
+							  pointRadius: 1,
+							  pointHitRadius: 10,
+							  strokeColor: "rgba(228,18,18,0.7)",
+							  data: media_melhores,
+							  spanGaps: false,
+							},
+							{
+							  label: "Piores",
+							  fill: false,
+							  lineTension: 0.1,
+							  backgroundColor: "#D10A0A",
+							  borderColor: "#D10A0A",
+							  borderCapStyle: 'butt',
+							  borderDash: [],
+							  borderDashOffset: 0.0,
+							  borderJoinStyle: 'miter',
+							  pointBorderColor: "#E86767",
+							  pointBackgroundColor: "rgba(0,0,0,1)",
+							  pointBorderWidth: 3,
+							  pointHoverRadius: 5,
+							  pointHoverBackgroundColor: "#CCE325",
+							  pointHoverBorderColor: "rgba(220,220,220,1)",
+							  pointHoverBorderWidth: 2,
+							  pointRadius: 1,
+							  pointHitRadius: 10,
+							  strokeColor: "rgba(228,18,18,0.7)",
+							  data: media_piores,
+							  spanGaps: false,
+							},
+							{
+							  label: "Média",
+							  fill: false,
+							  lineTension: 0.1,
+							  backgroundColor: "#00029E",
+							  borderColor: "#00029E",
+							  borderCapStyle: 'butt',
+							  borderDash: [],
+							  borderDashOffset: 0.0,
+							  borderJoinStyle: 'miter',
+							  pointBorderColor: "#707EEE",
+							  pointBackgroundColor: "rgba(0,0,0,1)",
+							  pointBorderWidth: 3,
+							  pointHoverRadius: 5,
+							  pointHoverBackgroundColor: "#CCE325",
+							  pointHoverBorderColor: "rgba(220,220,220,1)",
+							  pointHoverBorderWidth: 2,
+							  pointRadius: 1,
+							  pointHitRadius: 10,
+							  strokeColor: "rgba(228,18,18,0.7)",
+							  data: media_media,
+							  spanGaps: false,
+							}
+
+						]
+				  },
+			  	options: {
+
+				  	scales: {
+					  	xAxes: [
+					  		{
+					  			ticks: {suggestedMin: 0,},			
+						      scaleLabel: {
+						        display: true,
+						        labelString: 'Gerações'
+						      }
+					  	}],
+					  	yAxes: [
+					  		{
+					  			scaleStartValue: 999,
+					  			ticks: { suggestedMin: 999,},			
+						      scaleLabel: {
+						        display: true,
+						        labelString: 'Aptidôes'
+						      }
+					  	}],
+
+			  		}
+		  		},
+
+				});
+			});
+		}

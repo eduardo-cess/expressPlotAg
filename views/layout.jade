@@ -1,0 +1,45 @@
+doctype html
+html
+	head
+		title=title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		script(type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js")
+		script(type="text/javascript" src="/materialize/js/materialize.min.js")
+
+	body
+		nav
+			.nav-wrapper.purple.darken-4
+				a(href="#" class="brand-logo") AG
+				ul(id="nav-mobile" class="right hide-on-med-and-down")
+					li
+						a(href="/") Canônico
+					li
+						a(href="/ag_canonico_f6modificada") Canônico(f6+999)
+					li
+						a(href="/ag_elitismo") Elitismo
+					li
+						a(href="/ag_elitismo_f6modificada") Elitismo(f6+999)
+					li
+						a(href="/ag_normlinear") Norm. Linear
+					li
+						a(href="/ag_normlinear_elitismo") Norm. Linear + Elitismo
+
+
+		.container
+			block content
+
+		footer(style='background-color: #212121; margin-top:11%; margin-bottom:0%;', class="page-footer container-fluid")
+			.container
+				.row
+					.col.l6.s12
+						h5.white-text Sobre o tabalho
+						p.grey-text.text-lighten-4(style='text-align: justify;')
+							| O trabalho de Computação Evolutiva tem como objetivo maximizar uma função senoidal de duas variáveis através do uso de Algoritmo Genético, usando técnicas como elitismo e normalizaçõe linear.
+					.col.l4.offset-l2.s12
+						p.grey-text.text-lighten-4(style="padding-top:37%")
+							|Desenvolvido com 
+							a(href='#') NodeJs
+
+

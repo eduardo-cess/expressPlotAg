@@ -1,0 +1,787 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"cons",
+				"console.log"
+			],
+			[
+				"s",
+				"script"
+			],
+			[
+				"console",
+				"console.log()"
+			],
+			[
+				"for",
+				"for	for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"melhores",
+				"melhores_individuos"
+			],
+			[
+				"arr",
+				"array_media〔variable〕"
+			],
+			[
+				"ar",
+				"array_media"
+			],
+			[
+				"me",
+				"melhores_individuos"
+			],
+			[
+				"med",
+				"media"
+			],
+			[
+				"melh",
+				"melhor_da_geracao〔variable〕"
+			],
+			[
+				"ap",
+				"aptidao_individuo"
+			],
+			[
+				"melhor",
+				"melhor_da_geracao"
+			],
+			[
+				"sele",
+				"select_mais_apto_geracao〔function〕"
+			],
+			[
+				"pop",
+				"pop_inicial"
+			],
+			[
+				"indi",
+				"individuos〔variable〕"
+			],
+			[
+				"ind",
+				"individuos〔variable〕"
+			],
+			[
+				"po",
+				"populacao_inicial"
+			],
+			[
+				"get",
+				"get_experimento_from_mongo"
+			],
+			[
+				"medi",
+				"media_geral_ind"
+			],
+			[
+				"in",
+				"individuos"
+			],
+			[
+				"e",
+				"experimento_collection"
+			],
+			[
+				"ex",
+				"experimento"
+			],
+			[
+				"qtd_",
+				"qtd_pop〔variable〕"
+			],
+			[
+				"cont",
+				"cont_geracao〔variable〕"
+			],
+			[
+				"filho",
+				"filhos〔variable〕"
+			],
+			[
+				"random",
+				"randomInt"
+			],
+			[
+				"ran",
+				"random"
+			],
+			[
+				"conso",
+				"console.log('experimento"
+			],
+			[
+				"conn",
+				"connection   (obj) [E]"
+			],
+			[
+				"qtd",
+				"qtd_mutacoes_experimento"
+			],
+			[
+				"aptidao_",
+				"aptidao_pop_total_experimento"
+			],
+			[
+				"qt",
+				"qtd_mutacoes"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"a",
+				"avaliar"
+			],
+			[
+				"w",
+				"wt(\"x"
+			],
+			[
+				"fil",
+				"filhos〔variable〕"
+			],
+			[
+				"ra",
+				"random"
+			],
+			[
+				"p",
+				"push〔function〕"
+			],
+			[
+				"bin",
+				"bin2Float〔class〕"
+			],
+			[
+				"fo",
+				"for"
+			],
+			[
+				"parse",
+				"parseInt〔function〕"
+			],
+			[
+				"bi",
+				"binary"
+			],
+			[
+				"f",
+				"for	for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"fun",
+				"function〔keyword〕"
+			],
+			[
+				"_",
+				"$_GET〔variable〕"
+			],
+			[
+				"i",
+				"input	Tag"
+			],
+			[
+				"ac",
+				"action	Attr"
+			],
+			[
+				"pun",
+				"puntuados〔variable〕"
+			],
+			[
+				"ma",
+				"margin-bottom: 〔property〕"
+			],
+			[
+				"j",
+				"justify〔value〕"
+			],
+			[
+				"tex",
+				"text-align: 〔property〕"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "var MongoClient = require('mongodb').MongoClient, assert = require('assert');\nvar plot = require('plotter').plot;\n\n\nMongoClient.connect(\"mongodb://localhost:27017/ag\", function(err, db) {\n	assert.equal(null, err);\n\n	var individuos = new Array(), melhores_individuos = new Array();\n	var media,total = 0;\n	var pop_inicial = 200;\n	experimento_collection = db.collection('experimento');\n		\n	//for (var j = 10; j < array_populacao_experimento.length; j=j+10) {\n	experimento_collection.find({}).toArray(function(err, experimentos) {\n		assert.equal(null, err);\n		//array[30][5]->['experimento'][i]\n		// for(i in experimentos[0]['geracoes']){\n		// 	media_ind = (experimentos[0]['geracoes'][i]['individuo']+experimentos[1]['geracoes'][i]['individuo']+experimentos[2]['geracoes'][i]['individuo'])/3;\n		// 	individuos.push(media_ind);\n		// }\n		for(i in experimentos){\n			melhores_individuos.push(experimentos[i]['melhor_individuo']);\n			total += experimentos[i]['melhor_individuo'];\n		}\n\n		media = total/melhores_individuos.length;\n		console.log(media);\n	    \n	    plot({\n			data:		{'melhores individuos':melhores_individuos},\n			filename:	'melhores_individuos.png',\n			style:		'line',\n			title:		'Melhor Individuo por Experimento; Media: '+media,\n			//logscale:	true,\n			xlabel:		'Experimento',\n			ylabel:		'Avaliacao do Individuo',\n			format:		'png',\n			//moving_avg: 10\n		});\n    });\n	//}\n	db.close();\n});",
+			"file": "/home/cess/Documentos/Semestre/Computação_Evolutiva/ag/plot-from-mongo-melhores_por_experimento.js",
+			"file_size": 1396,
+			"file_write_time": 131128734680694026,
+			"settings":
+			{
+				"buffer_size": 1397,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/layout.jade",
+			"settings":
+			{
+				"buffer_size": 1648,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/index.js",
+			"settings":
+			{
+				"buffer_size": 745,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/index.jade",
+			"settings":
+			{
+				"buffer_size": 2615,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "import numpy as np\nfrom random import randint, uniform\nimport matplotlib.pyplot as plt\nimport csv\n\ntamanho_populacao = 50\ntamanho_populacao_cruzamento = tamanho_populacao\ntamanho_codigo = 50\ngeracoes = 1000\nmelhor_individuo = 0\nmelhor_individuo_cromossomo = []\ngeracao_atual = 0\ntaxa_cruzamento = 75\ntaxa_mutacao = 1\neixo = np.linspace(0, 999, 1000)\n\n\ndef criar_populacao():\n    populacao_criada = []\n    lista = []\n\n    for i in range(0, tamanho_populacao):\n        for j in range(0, tamanho_codigo):\n            lista.append(randint(0, 1))\n        populacao_criada.append(lista)\n        lista = []\n    return populacao_criada\n\n\ndef bits_valores():\n    precisao_bits = [200 / ((2 ** 25) - 1)]\n    for k in range(1, 25):\n        precisao_bits.append(precisao_bits[k - 1] * 2)\n    return precisao_bits\n\n\ndef valor_da_variavel(vetor_precisao, cromossomo):\n    eixo_x = 0\n    eixo_y = 0\n    for i in range(0, 25):\n        if cromossomo[i]:\n            eixo_x += vetor_precisao[i]\n    for i in range(25, 50):\n        if cromossomo[i]:\n            eixo_y += vetor_precisao[i - 26]\n    return eixo_x - 100, eixo_y - 100\n\n\ndef heap_sort(lista, cromossomo):\n    indice_final = len(lista) - 1\n    metade_lista = int(indice_final / 2)\n\n    for i in range(metade_lista, -1, -1):\n        cria_heap(lista, cromossomo, i, indice_final)\n\n    for i in range(indice_final, 0, -1):\n        if lista[0] > lista[i]:\n            lista[0], lista[i] = lista[i], lista[0]\n            cromossomo[0], cromossomo[i] = cromossomo[i], cromossomo[0]\n            cria_heap(lista, cromossomo, 0, i - 1)\n    return lista, cromossomo\n\n\ndef cria_heap(lista, cromossomo, inicio, fim):\n    filho = inicio * 2 + 1\n    while filho <= fim:\n        if (filho < fim) and (lista[filho] < lista[filho + 1]):\n            filho += 1\n        if lista[inicio] < lista[filho]:\n            lista[inicio], lista[filho] = lista[filho], lista[inicio]\n            cromossomo[inicio], cromossomo[filho] = cromossomo[filho], cromossomo[inicio]\n            inicio = filho\n            filho = 2 * inicio + 1\n        else:\n            return\n\n\ndef normalizacao_linear(tamanho_popula, minimo=10, maximo=100):\n    aptidao_normalizada = []\n    for i in range(0, tamanho_popula):\n        normalizada = minimo + (((maximo - minimo)/(tamanho_popula - 1)) * i)\n        aptidao_normalizada.append(normalizada)\n    return aptidao_normalizada\n\n\ndef avaliacao_aptidao(vetor_populacao):\n    vetor_aptidao = []\n    for i in range(0, len(vetor_populacao)):\n        x, y = valor_da_variavel(bits_valores(), vetor_populacao[i])\n        aptd = 0.5 - (((np.sin(np.sqrt(x**2 + y**2)))**2 - 0.5) / (1 + (0.001 * (x**2 + y**2)) ** 2))\n        vetor_aptidao.append(aptd)\n    return vetor_aptidao\n\n\ndef selecao(populacao_selecao, vetor_aptidao):\n    soma, acumulador, ind = 0, vetor_aptidao[0], 0\n    selecionado = []\n    soma = sum(vetor_aptidao)\n    num_aleatorio = uniform(0, soma)\n    while len(selecionado) != 50:\n        acumulador += vetor_aptidao[ind]\n        if acumulador >= num_aleatorio:\n            selecionado = populacao_selecao[ind]\n            break\n        ind += 1\n    # print(selecionado)\n    return selecionado\n\n\ndef elitismo(populacao_apto, aptidao_apto, populacao_2):\n    global tamanho_populacao_cruzamento\n    maior_apitdao, melhor_cromossomo = mais_apto(aptidao_apto, populacao_apto)\n    if tamanho_populacao == tamanho_populacao_cruzamento:\n        populacao_2.append(melhor_cromossomo)\n        tamanho_populacao_cruzamento += 1\n    else:\n        populacao_2.append(melhor_cromossomo)\n    return populacao_2\n\n\ndef um_ponto(pai_1, pai_2, popula):\n    # Cruzamento com um ponto de corte aleatório\n    filho_1 = []\n    filho_2 = []\n    ponto = randint(1, tamanho_codigo)\n    for i in range(0, ponto):\n        filho_1.append(pai_1[i])\n        filho_2.append(pai_2[i])\n    for i in range(ponto, tamanho_codigo):\n        filho_1.append(pai_1[i])\n        filho_2.append(pai_2[i])\n    popula.append(filho_1)\n    popula.append(filho_2)\n    return popula\n\n\ndef cruzamento(populacao_1, populacao_2, aptidao_cruzamento):\n    contador = 0\n    while contador < tamanho_populacao:\n        vetor = selecao(populacao_1, aptidao_cruzamento)\n        pai_1 = vetor\n        vetor = selecao(populacao_1, aptidao_cruzamento)\n        pai_2 = vetor\n        aleatorio = randint(0, 100)\n        if aleatorio < taxa_cruzamento:\n            populacao_2 = um_ponto(pai_1, pai_2, populacao_2)\n            contador += 2\n    return populacao_2\n\n\ndef nova_populacao(populacao_1, aptidao_apto, elite=False, normalizacao=False):\n    if elite and not normalizacao:\n        aptidao_cruzamento = avaliacao_aptidao(populacao_1)\n        populacao_2 = elitismo(populacao_1, aptidao_apto, [])\n        populacao_2 = cruzamento(populacao_1, populacao_2, aptidao_cruzamento)\n    elif not elite and normalizacao:\n        aptidao_apto, populacao_1 = heap_sort(aptidao_apto, populacao_1)\n        aptidao_cruzamento = normalizacao_linear(len(populacao_1))\n        populacao_2 = cruzamento(populacao_1, [], aptidao_cruzamento)\n    elif elite and normalizacao:\n        aptidao_apto, populacao_1 = heap_sort(aptidao_apto, populacao_1)\n        populacao_2 = elitismo(populacao_1, aptidao_apto, [])\n        aptidao_cruzamento = normalizacao_linear(len(populacao_1))\n        populacao_2 = cruzamento(populacao_1, populacao_2, aptidao_cruzamento)\n    else:\n        aptidao_cruzamento = avaliacao_aptidao(populacao_1)\n        populacao_2 = cruzamento(populacao_1, [], aptidao_cruzamento)\n\n    return populacao_2\n\n\ndef mutacao(vetor_populacao, taxa_de_mutacao):\n    for i in range(0, len(vetor_populacao)):\n        numero_aleatorio = uniform(0, 100)\n        if numero_aleatorio < taxa_de_mutacao:\n            indice_vetor = randint(0, 49)\n            vetor = vetor_populacao[i]\n            if vetor[indice_vetor] == 0:\n                vetor[indice_vetor] = 1\n            else:\n                vetor[indice_vetor] = 0\n            vetor_populacao[i] = vetor\n    return vetor_populacao\n\n\ndef mais_apto(aptidao_apto, populacao_apto):\n    # Esta função retorna a maior aptidão e o cromossomo do indivíduo com a maior aptidão\n    apto = aptidao_apto[0]\n    cromossomo = populacao_apto[0]\n    for i in range(1, len(aptidao_apto)):\n        if apto < aptidao_apto[i]:\n            apto = aptidao_apto[i]\n            cromossomo = populacao_apto[i]\n\n    return apto, cromossomo\n\n\ndef menos_apto(aptidao_apto):\n    individuo_menos_apto = aptidao_apto[0]\n    # cromossomo = populacao_apto[0]\n    for i in range(1, len(aptidao_apto)):\n        if individuo_menos_apto > aptidao_apto[i]:\n            individuo_menos_apto = aptidao_apto[i]\n            # cromossomo = populacao_apto[i]\n    return individuo_menos_apto\n\n\ndef media(arquivo):\n    vetor_media = []\n    for p in range(0, geracoes):\n        vetor_media.append(0)\n    with open(arquivo, 'r') as arq:\n        reader = csv.reader(arq, delimiter=',')\n\n        for linha in reader:\n            var_indice = 0\n            for valor in linha:\n                vetor_media[var_indice] += float(valor)\n                var_indice += 1\n    for indice in range(0, len(media_apt)):\n        vetor_media[indice] /= 30\n    return vetor_media\n\n\ndef desv_padrao(arq, vetor_padrao):\n    soma_desvio = []\n    for p in range(0, geracoes):\n        soma_desvio.append(0)\n    with open(arq, 'r') as ar:\n        reader = csv.reader(ar, delimiter=',')\n        for linha in reader:\n            va = 0\n            for valor in linha:\n                soma_desvio[va] += ((float(valor) - vetor_padrao[va]) ** 2)\n                va += 1\n    for indice in range(0, len(soma_desvio)):\n        soma_desvio[indice] /= 30\n    desvio_padrao = np.sqrt(soma_desvio)\n    return desvio_padrao\n\n# Execução do Algoritmo Genético\nc = csv.writer(open('aptos.csv', 'w'))\nd = csv.writer(open('media.csv', 'w'))\nr = csv.writer(open('piores_individuos.csv', 'w'))\nfor var1 in range(0, 10):\n    populacao_nova = criar_populacao()\n    var = 0\n    while var < 3:\n        print(var)\n        aptos = []\n        media_apt = []\n        pior_individuo = []\n        populacao = populacao_nova\n        while geracao_atual < geracoes:\n            aptidao = avaliacao_aptidao(populacao)\n            populacao = nova_populacao(populacao, aptidao, True, normalizacao=True)\n            populacao = mutacao(populacao, taxa_mutacao)\n            aptidao = avaliacao_aptidao(populacao)\n            individuo_apto, cromossomo_apto = mais_apto(aptidao, populacao)\n            menor_fitness = menos_apto(aptidao)\n            aptos.append(individuo_apto)\n            pior_individuo.append(menor_fitness)\n            if individuo_apto > melhor_individuo and geracao_atual == 49:\n                melhor_individuo = individuo_apto\n                melhor_individuo_cromossomo = cromossomo_apto\n            media_apt.append(sum(aptidao)/len(aptidao))\n            geracao_atual += 1\n\n        if len(aptos) and len(media_apt) == geracoes:\n            c.writerow(aptos)\n            d.writerow(media_apt)\n            r.writerow(pior_individuo)\n            var += 1\n        geracao_atual = 0\n# Média dos 30 ensaios\nmedia_apt = media('media.csv')\naptos = media('aptos.csv')\npior_individuo = media('piores_individuos.csv')\n# Desvio padrão dos 30 ensaios\nmedia_des = desv_padrao('media.csv', media_apt)\naptos_des = desv_padrao('aptos.csv', aptos)\npior_individuo_des = desv_padrao('piores_individuos.csv', pior_individuo)\nmelhor_individuo_x, melhor_individuo_y = valor_da_variavel(bits_valores(), melhor_individuo_cromossomo)\n\nprint(\"Melhor indivíduo:\")\nprint(melhor_individuo)\nprint(\"Cromossomo\")\nprint(melhor_individuo_cromossomo)\nprint(\"Posição\")\nprint(melhor_individuo_x, melhor_individuo_y)\n\nplt.subplot(4, 1, 1)\nplt.plot(eixo, aptos, eixo, pior_individuo, eixo, media_apt)\nplt.ylabel('Aptidão')\n\nplt.subplot(4, 1, 2)\nplt.errorbar(eixo, aptos, yerr=aptos_des, errorevery=10)\nplt.ylabel('Melhor indivíduo')\n\nplt.subplot(4, 1, 3)\nplt.errorbar(eixo, pior_individuo, yerr=pior_individuo_des, errorevery=10)\nplt.ylabel('Pior Individuo')\n\nplt.subplot(4, 1, 4)\nplt.errorbar(eixo, media_apt, yerr=media_des, errorevery=10)\nplt.xlabel('Gerações')\nplt.ylabel('Média dos indivíduos')\n",
+			"settings":
+			{
+				"buffer_size": 10119,
+				"line_ending": "Unix",
+				"name": "import numpy as np"
+			}
+		},
+		{
+			"file": "app.js",
+			"settings":
+			{
+				"buffer_size": 1442,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 354.0,
+		"last_filter": "p",
+		"selected_items":
+		[
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"npm i",
+				"npm: Install Saved Packages"
+			],
+			[
+				"npm sa",
+				"npm: Install and Save Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"git ",
+				"Git: Add All"
+			],
+			[
+				"git p",
+				"Git: Push Current Branch"
+			],
+			[
+				"git",
+				"Git: Add All"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 539.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/cess/Documentos/nodejs/nodematerialize",
+		"/home/cess/Documentos/nodejs/nodematerialize/bin",
+		"/home/cess/Documentos/nodejs/nodematerialize/public",
+		"/home/cess/Documentos/nodejs/nodematerialize/routes",
+		"/home/cess/Documentos/nodejs/nodematerialize/views"
+	],
+	"file_history":
+	[
+		"/home/cess/Documentos/nodejs/nodematerialize/public/javascripts/underscore.js",
+		"/home/cess/Documentos/Semestre/Computação_Evolutiva/ag/ag-compact.js",
+		"/home/cess/Documentos/Semestre/Computação_Evolutiva/ag/plot-from-mongo-melhores_por_geracao.js",
+		"/home/cess/Documentos/nodejs/nodematerialize/public/experimentos-teste.json",
+		"/home/cess/Documentos/nodejs/nodematerialize/views/index.jade",
+		"/home/cess/Documentos/nodejs/nodematerialize/app.js",
+		"/home/cess/Documentos/nodejs/nodematerialize/public/javascripts/index.js",
+		"/home/cess/Documentos/nodejs/nodematerialize/views/layout.jade",
+		"/home/cess/Documentos/nodejs/nodematerialize/routes/index.js",
+		"/home/cess/Documentos/nodejs/nodematerialize/node_modules/chart.js/dist/Chart.js",
+		"/home/cess/Documentos/nodejs/nodematerialize/node_modules/chart.js/dist/Chart.min.js",
+		"/home/cess/Documentos/nodejs/nodematerialize/node_modules/chart.js/src/chart.js",
+		"/home/cess/Documentos/nodejs/nodematerialize/node_modules/chart.js/samples/bar.html",
+		"/home/cess/Documentos/nodejs/nodematerialize/public/chartjs/samples/line-stepped.html",
+		"/home/cess/Documentos/nodejs/nodematerialize/public/d3.min.js",
+		"/home/cess/Documentos/nodejs/nodematerialize/public/d3.js",
+		"/home/cess/.cache/.fr-qZtcvi/d3.min.js",
+		"/home/cess/Documentos/meteor/ltjquery/client/layout.html",
+		"/home/cess/Documentos/Semestre/Computação Evolutiva/ag/ag-compact.js",
+		"/home/cess/Documentos/Semestre/Computação Evolutiva/ag/ag-completo-mongodb.js",
+		"/home/cess/Documentos/nodejs/nodematerialize/public/stylesheets/style.css",
+		"/home/cess/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/cess/Documentos/nodejs/nodematerialize/package.json",
+		"/home/cess/Documentos/nodejs/express2/views/index.jade",
+		"/home/cess/Documentos/nodejs/express2/views/layout.jade",
+		"/home/cess/Documentos/nodejs/express2/app.js",
+		"/home/cess/Documentos/nodejs/express2/routes/index.js",
+		"/home/cess/Documentos/nodejs/express2/views/helloworld.jade",
+		"/home/cess/Documentos/nodejs/express2/bin/www",
+		"/home/cess/Documentos/nodejs/express1/index.js",
+		"/home/cess/Documentos/nodejs/express2/package.json",
+		"/home/cess/.config/sublime-text-3/Packages/Color Scheme - Default/Blackboard.tmTheme",
+		"/home/cess/.config/sublime-text-3/Packages/Tron Color Scheme/TronLegacy.tmTheme",
+		"/home/cess/.cache/.fr-NapvAF/ColorSchemeEditor-ST2.py",
+		"/home/cess/Documentos/nodejs/express1/index.html",
+		"/home/cess/Documentos/meteor/hackathon/view/templates/template2.html",
+		"/home/cess/Documentos/meteor/hackathon/view/templates/layout/menuOptions.html",
+		"/home/cess/Documentos/meteor/hackathon/lib/routes.js",
+		"/home/cess/Documentos/meteor/hackathon/view/templates/index.html",
+		"/home/cess/Documentos/meteor/hackathon/lib/scripts.html",
+		"/home/cess/Documentos/meteor/hackathon/view/templates/conveniosFromMongo.html",
+		"/home/cess/Documentos/Semestre/Computação Evolutiva/ag/ag-completo-mysql.js",
+		"/home/cess/Documentos/Semestre/Computação Evolutiva/ag/plot-from-mongo-melhores_por_geracao.js",
+		"/home/cess/Documentos/Semestre/Computação Evolutiva/ag/plot-from-mongo.js",
+		"/home/cess/Documentos/Semestre/Computação Evolutiva/ag/plot-from-mongo.py",
+		"/home/cess/Documentos/nodejs/myapp/routes/index.js",
+		"/home/cess/Documentos/nodejs/myapp/app.js",
+		"/home/cess/Documentos/nodejs/HTML5Application/public_html/arquivo.js",
+		"/home/cess/Documentos/nodejs/HTML5Application/public_html/nodejs.js",
+		"/home/cess/Documentos/nodejs/HTML5Application/public_html/index.html",
+		"/home/cess/Documentos/Semestre/Computação Evolutiva/ag/package.json",
+		"/home/cess/Documentos/Semestre/Computação Evolutiva/ag/node_modules/mongodb/package.json",
+		"/home/cess/Desktop/Documentos/Semestre/Computação Evolutiva/ag/ag-completo.js",
+		"/home/cess/Documentos/Semestre/Computação Evolutiva/ag/index.js",
+		"/home/cess/Desktop/Documentos/Semestre/Computação Evolutiva/ag/package.json",
+		"/home/cess/Documentos/meteor/hackathon/controller/main.js",
+		"/home/cess/.config/sublime-text-3/Packages/User/nodeBuild.sublime-build",
+		"/home/cess/Documentos/nodejs/buypoint/teste",
+		"/home/cess/Documentos/nodejs/espress-teste/index.js",
+		"/srv/http/nomes/index.php",
+		"/srv/http/nomes.php",
+		"/home/cess/Documentos/nodejs/espress-teste/package.json",
+		"/home/cess/Documentos/nodejs/myapp/package.json",
+		"/home/cess/Documentos/nodejs/myapp/routes/users.js",
+		"/home/cess/Documentos/Semestre/Computação Evolutiva/teste.py",
+		"/home/cess/Documentos/meteor/virtualShopping/client/main.js",
+		"/home/cess/Documentos/meteor/virtualShopping/client/main.html",
+		"/home/cess/Documentos/meteor/virtualShopping/client/controller/routes.js",
+		"/home/cess/Documentos/meteor/virtualShopping/client/main.jade",
+		"/home/cess/Downloads/sistemacongresso.sql",
+		"/home/cess/Documentos/python/scriptHackathon/apiToDB.py",
+		"/srv/http/para_raio/config/Config.php",
+		"/home/cess/Documentos/meteor/angular/client/main.js",
+		"/home/cess/Documentos/meteor/angular/client/main.html",
+		"/home/cess/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/cess/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/cess/Documentos/meteor/ltjquery/client/angular-meteor.sublime-project",
+		"/home/cess/Desktop/initializr/index.html",
+		"/sbin/netbeans",
+		"/home/cess/Documentos/meteor/angular/client/layout.html",
+		"/home/cess/Documentos/meteor/angular/client/routes.js"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			");\n",
+			"gr",
+			"router.get('/', function(req, res, next) {\n  res.render('index', { title: 'Express' });\n});\n",
+			"result",
+			"media_array",
+			"wt",
+			"random",
+			"wt",
+			"01010101010010110101010100000110001101101110010011000010",
+			"population",
+			"individual",
+			"Crea",
+			"mutation_chance",
+			"num",
+			"largo",
+			"ctrl+spa",
+			"<template name=\"ex1\">\n\n</template>"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"experimentos",
+			"console.log",
+			"populacao",
+			"individuo",
+			"cria",
+			"tMutacao",
+			"qtdIndividuosPop",
+			"tamanho"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/home/cess/Documentos/Semestre/Computação_Evolutiva/ag/plot-from-mongo-melhores_por_experimento.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1397,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1397,
+								1397
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Material-Theme-Darker.tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "views/layout.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1648,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Material-Theme-Darker.tmTheme",
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "routes/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 745,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								374,
+								374
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/Material-Theme-Darker.tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "views/index.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2615,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								517,
+								517
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 90.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10119,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5215,
+								5215
+							]
+						],
+						"settings":
+						{
+							"auto_name": "import numpy as np",
+							"syntax": "Packages/Python 3/Python3.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 977.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1442,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1200,
+								1200
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Material-Theme-Darker.tmTheme",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 152.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 120.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "Packages/User/nodeBuild.sublime-build",
+	"project": "nodematerialize.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 281.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
