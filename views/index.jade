@@ -1,8 +1,31 @@
 extends layout
 
 block content
-	h3.center= title
-	h5.center.black-text Gráfico da Média de Indivíduos por Geração
+	form(name="form", action="/process_post", method="POST")
+		.row
+			.input-field.col.s12.m5.l5
+				select(required name="tipoag")
+					option(value="", disabled, selected) Selecionar tipo AG
+					option(value="ag_canonico") Canônico
+					option(value="ag_elitismo") Elitismo
+					option(value="ag_normlinear") Norm. Linear
+					option(value="ag_normlinear_elitismo") Norm. Linear + Elit.
+					option(value="ag_canonico_f6aumentada") Canônico F6+999
+					option(value="ag_elitismo_f6aumentada") Elitismo F6+999
+					label Tipo do AG
+			.input-field.col.s12.m5.l5
+				select(required name="tipocruzamento")
+					option(value="", disabled, selected) Selecionar tipo Cruzamento
+					option(value="c1") Um Ponto de Corte
+					option(value="c2") Dois Pontos de Corte
+					option(value="c3") Uniforme
+					label Tipo do Cruzamento
+			input.btn.col.s12.m2.l2.cyan.darken-3(name="enviar" type="submit" value="GO!" style="margin-top: 20px")
+
+	if title
+		h3.center= title
+		h5.center.black-text Gráfico da Média de Indivíduos por Geração
+
 	
 	canvas#grafico
 
@@ -10,29 +33,28 @@ block content
 	script(type="text/javascript" src="./javascripts/underscore.js")
 	script(type="text/javascript").
 		{
-			//var u = require('underscore');
-
 			var experimentos = !{experimentos};
 			var tipo_ag = !{tipo_ag};
-			console.log(tipo_ag);
-			//console.log(experimentos[4]['melhor_por_geracao']);
-			var qtd_geracoes = experimentos[0]['melhor_por_geracao'].length;
-			var media_melhores = [], media_piores = [], media_media = [];
-			var sum_melhores = 0, sum_piores = 0, sum_media = 0;
-			
-			for(i in _.range(qtd_geracoes)){
-				for(j in experimentos){
-					sum_melhores+=experimentos[j]['melhor_por_geracao'][i];
-					sum_piores+=experimentos[j]['pior_por_geracao'][i];
-					sum_media+=experimentos[j]['media_por_geracao'][i];
+			if(experimentos){
+				var qtd_geracoes = experimentos[0]['melhor_por_geracao'].length;
+				var media_melhores = [], media_piores = [], media_media = [];
+				var sum_melhores = 0, sum_piores = 0, sum_media = 0;
+				
+				for(i in _.range(qtd_geracoes)){
+					for(j in experimentos){
+						sum_melhores+=experimentos[j]['melhor_por_geracao'][i];
+						sum_piores+=experimentos[j]['pior_por_geracao'][i];
+						sum_media+=experimentos[j]['media_por_geracao'][i];
+					}
+					media_melhores.push(sum_melhores/experimentos.length);
+					media_piores.push(sum_piores/experimentos.length);
+					media_media.push(sum_media/experimentos.length);
+					sum_melhores = 0, sum_piores = 0, sum_media = 0;
 				}
-				media_melhores.push(sum_melhores/experimentos.length);
-				media_piores.push(sum_piores/experimentos.length);
-				media_media.push(sum_media/experimentos.length);
-				sum_melhores = 0, sum_piores = 0, sum_media = 0;
 			}
 			
 			$(document).ready(function(){
+				$('select').material_select();
 			  var ctxLine = document.getElementById("grafico").getContext("2d");
 
 			  window.myBar = new Chart(ctxLine,{
